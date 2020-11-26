@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import './App.css';
-
+import {CardList} from './component/card-list/card-list.component'
 
 class App extends Component{
   constructor(){
@@ -19,14 +19,9 @@ class App extends Component{
   }
 
   render() {
+    console.log(this.state.movies)
     return (
-      <div className="App">
-        {
-          this.state.movies.map(movie => (
-            <h1>{movie.title}</h1>
-          ))
-        }
-      </div>
+      <CardList movies = {this.state.movies}/>
     );
   }
 }
