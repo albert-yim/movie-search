@@ -1,25 +1,34 @@
-import logo from './logo.svg';
+import { Component } from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends Component{
+  constructor(){
+    super();
+    this.state = {
+      movies: []
+    };
+  }
+
+  componentDidMount(){
+    fetch(`http://api.themoviedb.org/3/search/movie?query=Superman&api_key=c0cfde6eeaf28982f2de2403db46d141`)
+    .then(response => response.json())
+    .then(data => this.setState({movies:data.results}));
+    // .then(data => data.result)
+    // .then(result => console.log(result))
+  }
+
+  render() {
+    return (
+      <div className="App">
+        {
+          this.state.movies.map(movie => (
+            <h1>{movie.title}</h1>
+          ))
+        }
+      </div>
+    );
+  }
 }
 
 export default App;
