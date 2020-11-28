@@ -1,7 +1,9 @@
-import { Component } from 'react';
-import './App.css';
-import {CardList} from './component/card-list/card-list.component'
+import React, { Component } from 'react';
 
+import {CardList} from './component/card-list/card-list.component';
+import {SearchBox} from './component/search-box/search-box.component';
+
+import './App.css';
 class App extends Component{
   constructor(){
     super();
@@ -30,11 +32,12 @@ class App extends Component{
     console.log(this.state.movies)
     return (
       <div className = 'App'>
-        <input 
-          type = 'search'
-          placeholder = {this.state.searchField}
-          onChange = {e => this.setState({searchField: e.target.value})}
+      
+        <SearchBox 
+          placeholder= {this.state.searchField} 
+          handleChange = {e => this.setState({searchField: e.target.value})} 
         />
+
         <button
           onClick = {() => this.feachMovieData()} 
         />
