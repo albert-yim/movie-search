@@ -16,8 +16,6 @@ class App extends Component{
     fetch(`http://api.themoviedb.org/3/search/movie?query=Avengers&api_key=c0cfde6eeaf28982f2de2403db46d141`)
     .then(response => response.json())
     .then(data => this.setState({movies:data.results}));
-    // .then(data => data.result)
-    // .then(result => console.log(result))
   }
 
   feachMovieData(){
@@ -28,13 +26,13 @@ class App extends Component{
   }
 
   render() {
-    // this.feachMovieData(this.state.searchName)
+    
     console.log(this.state.movies)
     return (
       <div className = 'App'>
         <input 
           type = 'search'
-          placeholder = 'search movies'
+          placeholder = {this.state.searchField}
           onChange = {e => this.setState({searchField: e.target.value})}
         />
         <button
